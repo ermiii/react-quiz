@@ -8,6 +8,8 @@
  * Identify what it should be and write it on line 1 above.
  */
 
+import React from "react";
+
 function Header() {
   return (
     <h1>Open the QuestionX files inside the src folder and complete them</h1>

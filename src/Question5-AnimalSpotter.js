@@ -13,9 +13,11 @@ import React, { Component } from "react";
 class AnimalSpotter extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { animalSpotted: 0 };
   }
-
+  spotAnimal = () => {
+    this.setState({ animalSpotted: ++this.state.animalSpotted });
+  };
   render() {
     return (
       <div className="animal-spotter">
@@ -28,7 +30,10 @@ class AnimalSpotter extends Component {
 
 function CounterButton(props) {
   return (
-    <button style={{ background: "lightseagreen", color: "white" }} onClick>
+    <button
+      style={{ background: "lightseagreen", color: "white" }}
+      onClick={props.handleClick}
+    >
       I spotted an animal!
     </button>
   );

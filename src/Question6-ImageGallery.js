@@ -17,13 +17,23 @@ class ImageGallery extends Component {
       imgSrc: null
     };
   }
-
+  componentDidMount() {
+    this.fetchData();
+  }
   fetchData = () => {
-    fetch().then(res => res.json());
+    fetch("https://auspicious-baritone.glitch.me/gorilla")
+      .then(res => res.json())
+      .then(src => {
+        this.setState({ imgSrc: src });
+      });
   };
 
   render() {
-    return <img src={this.state.imgSrc} alt="An animal" />;
+    if (this.state.imgSrc) {
+      return <img src={this.state.imgSrc} alt="An animal" />;
+    } else {
+      return <p>Image is loading....</p>;
+    }
   }
 }
 

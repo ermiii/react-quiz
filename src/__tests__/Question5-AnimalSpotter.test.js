@@ -1,24 +1,32 @@
-import React from "react";
-import { mount } from "enzyme";
+import React, { Component } from "react";
 
-import AnimalSpotter from "../Question5-AnimalSpotter";
-
-describe.skip("Question 5 - AnimalSpotter", () => {
-  it("shows an initial count", () => {
-    const component = mount(<AnimalSpotter />);
-    expect(component.find(".animal-spotter p").text()).toBe(
-      "Number of animals spotted: 0"
+class AnimalSpotter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { animalSpotted: 0 };
+  }
+  spotAnimal = () => {
+    this.setState({ animalSpotted: ++this.state.animalSpotted });
+  };
+  render() {
+    return (
+      <div className="animal-spotter">
+        <p>Number of animals spotted: {this.state.animalSpotted}</p>
+        <CounterButton handleClick={this.spotAnimal} />
+      </div>
     );
-  });
+  }
+}
 
-  it("increments the count when button clicked", () => {
-    const component = mount(<AnimalSpotter />);
+function CounterButton(props) {
+  return (
+    <button
+      style={{ background: "lightseagreen", color: "white" }}
+      onClick={props.handleClick}
+    >
+      I spotted an animal!
+    </button>
+  );
+}
 
-    component.find(".animal-spotter button").simulate("click");
-    component.update();
-
-    expect(component.find(".animal-spotter p").text()).toBe(
-      "Number of animals spotted: 1"
-    );
-  });
-});
+export default AnimalSpotter;

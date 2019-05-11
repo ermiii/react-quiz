@@ -13,7 +13,6 @@
  * HINT: use window.removeEventListener to remove an event listener that is no
  * longer needed
  */
-
 import React, { Component } from "react";
 
 export class WindowSize extends Component {
@@ -26,6 +25,10 @@ export class WindowSize extends Component {
 
   componentDidMount() {
     window.addEventListener("resize", this.handleWindowResize);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.handleWindowResize);
   }
 
   handleWindowResize = () => {
